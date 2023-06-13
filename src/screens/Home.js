@@ -1,14 +1,47 @@
 import { PostsScreen, CreatePostsScreen, ProfileScreen } from "../screens";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { AntDesign } from "@expo/vector-icons";
+import { View } from "react-native";
 
 const Tabs = createBottomTabNavigator();
 
 export const Home = () => {
   return (
     <Tabs.Navigator
+      screenOptions={({ route }) => ({
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          borderTopColor: "rgba(0, 0, 0, 0.3)",
+          borderTopWidth: 1,
+          paddingTop: 8,
+
+          alignItems: "center",
+        },
+        tabBarActiveBackgroundColor: "#FF6C00",
+        tabBarInactiveBackgroundColor: "#fff",
+        tabBarItemStyle: {
+          borderRadius: 20,
+          height: 40,
+          maxWidth: 70,
+
+          marginHorizontal: 15,
+        },
+        tabBarIcon: ({ color }) => {
+          if (route.name === "PostsScreen") {
+            return <Ionicons name="grid-outline" size={24} color={color} />;
+          }
+          if (route.name === "CreatePostsScreen") {
+            return <AntDesign name="plus" size={24} color={color} />;
+          }
+          if (route.name === "ProfileScreen") {
+            return <Ionicons name="person-outline" size={24} color={color} />;
+          }
+        },
+      })}
       tabBarOptions={{
-        activeTintColor: "#FF6C00",
-        inactiveTintColor: "gray",
+        activeTintColor: "#fff",
+        inactiveTintColor: "rgba(33, 33, 33, 0.8)",
       }}
     >
       <Tabs.Screen
@@ -25,30 +58,6 @@ export const Home = () => {
     </Tabs.Navigator>
   );
 };
-
-//  <MainStack.Screen
-//           name="CreatePostsScreen"
-//           component={CreatePostsScreen}
-//           options={{
-//             ...headerStyles,
-//             title: "Створити публікацію",
-//             headerLeft: () => (
-//               <AntDesign
-//                 name="arrowleft"
-//                 size={24}
-//                 color="rgba(33, 33, 33, 0.8)"
-//                 style={{ marginLeft: 16 }}
-//               />
-//             ),
-//           }}
-//         />
-//         <MainStack.Screen
-//           name="CommentsScreen"
-//           component={CommentsScreen}
-//           options={{
-//             headerShown: false,
-//           }}
-//         />
 
 const headerStyles = {
   headerStyle: {
