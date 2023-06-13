@@ -11,14 +11,16 @@ import {
   Keyboard,
 } from "react-native";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { sendEmailValidationRequest } from "../services/api";
 import backgroundImage from "../../assets/images/backgroundPhoto.jpeg";
 
-export const LoginScreen = ({ toggle }) => {
+export const LoginScreen = () => {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(true);
+  const navigation = useNavigation();
 
   const handleFocus = () => {
     setIsKeyboardVisible(true);
@@ -56,7 +58,7 @@ export const LoginScreen = ({ toggle }) => {
                 paddingBottom: isKeyboardVisible ? 32 : 144,
               }}
             >
-              <Text style={styles.title}>Увійти</Text>
+              <Text style={styles.title}> Увійти</Text>
 
               <View>
                 <View style={{ marginBottom: 16 }}>
@@ -99,7 +101,9 @@ export const LoginScreen = ({ toggle }) => {
 
               <TouchableOpacity
                 style={styles.registrationButton}
-                onPress={toggle}
+                onPress={() => {
+                  navigation.navigate("RegistrationScreen");
+                }}
               >
                 <Text style={styles.registrationButtonText}>
                   Немає акаунту?

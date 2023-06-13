@@ -13,15 +13,17 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { sendEmailValidationRequest } from "../services/api";
 import backgroundImage from "../../assets/images/backgroundPhoto.jpeg";
 
-export const RegistrationScreen = ({ toggle }) => {
+export const RegistrationScreen = () => {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(true);
+  const navigation = useNavigation();
 
   const handleFocus = () => {
     setIsKeyboardVisible(true);
@@ -121,7 +123,9 @@ export const RegistrationScreen = ({ toggle }) => {
 
               <TouchableOpacity
                 style={styles.logInButtonContainer}
-                onPress={toggle}
+                onPress={() => {
+                  navigation.navigate("LoginScreen");
+                }}
               >
                 <Text style={styles.logInButtonText}>Вже є акаунт? Увійти</Text>
               </TouchableOpacity>

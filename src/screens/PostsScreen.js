@@ -1,17 +1,17 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 
 export const PostsScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text>This is Posts Screen</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Text>Публікації</Text>
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
