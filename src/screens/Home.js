@@ -1,11 +1,16 @@
-import { PostsScreen, CreatePostsScreen, ProfileScreen } from "../screens";
+import { PostsScreen, CreatePostsScreen, ProfileScreen } from "./index";
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useNavigation } from "@react-navigation/native";
+
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { AntDesign } from "@expo/vector-icons";
 
 const Tabs = createBottomTabNavigator();
 
 export const Home = () => {
+  const navigation = useNavigation();
+
   return (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
@@ -17,6 +22,8 @@ export const Home = () => {
 
           alignItems: "center",
         },
+        tabBarActiveTintColor: "#fff",
+        tabBarInactiveTintColor: "rgba(33, 33, 33, 0.8)",
         tabBarActiveBackgroundColor: "#FF6C00",
         tabBarInactiveBackgroundColor: "#fff",
         tabBarItemStyle: {
@@ -38,17 +45,29 @@ export const Home = () => {
           }
         },
       })}
-      tabBarOptions={{
-        activeTintColor: "#fff",
-        inactiveTintColor: "rgba(33, 33, 33, 0.8)",
-      }}
     >
       <Tabs.Screen
         name="PostsScreen"
         component={PostsScreen}
         options={{ ...headerStyles, title: "Публікації" }}
       />
-      <Tabs.Screen name="CreatePostsScreen" component={CreatePostsScreen} />
+      <Tabs.Screen
+        name="CreatePostsScreen"
+        component={CreatePostsScreen}
+        options={{
+          ...headerStyles,
+          title: "Створити публікацію",
+          headerLeft: () => (
+            <AntDesign
+              name="arrowleft"
+              size={24}
+              color="rgba(33, 33, 33, 0.8)"
+              style={{ marginLeft: 16 }}
+              onPress={() => navigation.navigate("PostsScreen")}
+            />
+          ),
+        }}
+      />
       <Tabs.Screen
         name="ProfileScreen"
         component={ProfileScreen}

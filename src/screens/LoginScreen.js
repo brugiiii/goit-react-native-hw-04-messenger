@@ -34,7 +34,6 @@ export const LoginScreen = () => {
     const isValid = await sendEmailValidationRequest(email);
 
     if (isValid) {
-      console.log(`email: ${email}, password: ${password}`);
       setEmail("");
       setPassword("");
       navigation.navigate("Home");

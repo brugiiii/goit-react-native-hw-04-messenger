@@ -1,12 +1,5 @@
 import "react-native-gesture-handler";
-import {
-  PostsScreen,
-  RegistrationScreen,
-  LoginScreen,
-  CreatePostsScreen,
-  CommentsScreen,
-  Home,
-} from "./src/screens";
+import { RegistrationScreen, LoginScreen, Home } from "./src/screens";
 import { useFonts } from "expo-font";
 
 import { NavigationContainer } from "@react-navigation/native";

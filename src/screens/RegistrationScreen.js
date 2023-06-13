@@ -39,7 +39,6 @@ export const RegistrationScreen = () => {
     const isValid = await sendEmailValidationRequest(email);
 
     if (isValid) {
-      console.log(`login: ${login}, email: ${email}, password: ${password}`);
       setLogin("");
       setEmail("");
       setPassword("");
