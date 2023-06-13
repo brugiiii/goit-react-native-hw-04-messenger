@@ -37,6 +37,7 @@ export const LoginScreen = () => {
       console.log(`email: ${email}, password: ${password}`);
       setEmail("");
       setPassword("");
+      navigation.navigate("Home");
     } else {
       console.log("EMAIL WAS INVALID.");
     }

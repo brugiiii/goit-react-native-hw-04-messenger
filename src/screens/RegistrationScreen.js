@@ -18,18 +18,20 @@ import { sendEmailValidationRequest } from "../services/api";
 import backgroundImage from "../../assets/images/backgroundPhoto.jpeg";
 
 export const RegistrationScreen = () => {
-  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [showPassword, setShowPassword] = useState(true);
+  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
+
   const navigation = useNavigation();
 
-  const handleFocus = () => {
+  const handleFocus = (e) => {
     setIsKeyboardVisible(true);
   };
 
-  const handleBlur = () => {
+  const handleBlur = (e) => {
     setIsKeyboardVisible(false);
   };
 
@@ -41,6 +43,7 @@ export const RegistrationScreen = () => {
       setLogin("");
       setEmail("");
       setPassword("");
+      navigation.navigate("Home");
     } else {
       console.log("EMAIL WAS INVALID.");
     }
@@ -73,19 +76,24 @@ export const RegistrationScreen = () => {
                 <View>
                   <TextInput
                     placeholder="Логін"
-                    style={{ ...styles.input, marginBottom: 16 }}
-                    utoCapitalize="none"
+                    style={{
+                      ...styles.input,
+                      marginBottom: 16,
+                    }}
+                    autoCapitalize="none"
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     value={login}
                     onChangeText={setLogin}
-                    a
                   />
                 </View>
                 <View>
                   <TextInput
                     placeholder="Адреса електронної пошти"
-                    style={{ ...styles.input, marginBottom: 16 }}
+                    style={{
+                      ...styles.input,
+                      marginBottom: 16,
+                    }}
                     keyboardType="email-address"
                     autoCapitalize="none"
                     onFocus={handleFocus}
@@ -197,10 +205,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
 
-    backgroundColor: "#F6F6F6",
     borderWidth: 1,
-    borderColor: "#E8E8E8",
     borderRadius: 8,
+    backgroundColor: "#F6F6F6",
+    borderColor: "#E8E8E8",
   },
   showPasswordButton: {
     position: "absolute",
