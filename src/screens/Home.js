@@ -2,7 +2,6 @@ import { PostsScreen, CreatePostsScreen, ProfileScreen } from "../screens";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { AntDesign } from "@expo/vector-icons";
-import { View } from "react-native";
 
 const Tabs = createBottomTabNavigator();
 
