@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   View,
   Text,
   TextInput,
@@ -10,7 +9,7 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
-import defaultPhoto from "../../assets/images/defaultPhoto.png";
+import defaultPhoto from "~/assets/images/defaultPhoto.png";
 
 export const CreatePostsScreen = () => {
   return (

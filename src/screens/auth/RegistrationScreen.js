@@ -1,32 +1,37 @@
 import {
   View,
-  ImageBackground,
-  StyleSheet,
+  Image,
   Text,
+  StyleSheet,
+  ImageBackground,
   TextInput,
   TouchableOpacity,
-  KeyboardAvoidingView,
   Platform,
+  KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { sendEmailValidationRequest } from "../services/api";
-import backgroundImage from "../../assets/images/backgroundPhoto.jpeg";
+import { sendEmailValidationRequest } from "~/services/api";
+import backgroundImage from "~/assets/images/backgroundPhoto.jpeg";
 
-export const LoginScreen = () => {
-  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
+export const RegistrationScreen = () => {
+  const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [showPassword, setShowPassword] = useState(true);
+  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
+
   const navigation = useNavigation();
 
-  const handleFocus = () => {
+  const handleFocus = (e) => {
     setIsKeyboardVisible(true);
   };
 
-  const handleBlur = () => {
+  const handleBlur = (e) => {
     setIsKeyboardVisible(false);
   };
 
@@ -34,6 +39,7 @@ export const LoginScreen = () => {
     const isValid = await sendEmailValidationRequest(email);
 
     if (isValid) {
+      setLogin("");
       setEmail("");
       setPassword("");
       navigation.navigate("Home");
@@ -54,18 +60,39 @@ export const LoginScreen = () => {
           >
             <View
               style={{
-                ...styles.authorizeContainer,
-                paddingBottom: isKeyboardVisible ? 32 : 144,
+                ...styles.registrationContainer,
+                paddingBottom: isKeyboardVisible ? 32 : 78,
               }}
             >
-              <Text style={styles.title}> Увійти</Text>
-
-              <View>
-                <View style={{ marginBottom: 16 }}>
+              <View style={styles.avatarContainer}>
+                <Image style={styles.avatar} />
+                <TouchableOpacity style={styles.addAvatarButton}>
+                  <AntDesign name="pluscircleo" size={25} color="#FF6C00" />
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.title}>Реєстрація</Text>
+              <View style={{ marginBottom: 16 }}>
+                <View>
                   <TextInput
-                    style={styles.input}
+                    placeholder="Логін"
+                    style={{
+                      ...styles.input,
+                      marginBottom: 16,
+                    }}
+                    autoCapitalize="none"
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    value={login}
+                    onChangeText={setLogin}
+                  />
+                </View>
+                <View>
+                  <TextInput
                     placeholder="Адреса електронної пошти"
-                    placeholderTextColor={"#BDBDBD"}
+                    style={{
+                      ...styles.input,
+                      marginBottom: 16,
+                    }}
                     keyboardType="email-address"
                     autoCapitalize="none"
                     onFocus={handleFocus}
@@ -76,9 +103,8 @@ export const LoginScreen = () => {
                 </View>
                 <View style={{ marginBottom: 43, position: "relative" }}>
                   <TextInput
-                    style={styles.input}
                     placeholder="Пароль"
-                    placeholderTextColor={"#BDBDBD"}
+                    style={styles.input}
                     secureTextEntry={showPassword}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
@@ -94,23 +120,21 @@ export const LoginScreen = () => {
                     </Text>
                   </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.logInButton} onPress={onSubmit}>
-                  <Text style={styles.logInButtonText}>Увійти</Text>
+                <TouchableOpacity
+                  style={styles.registerButtonContainer}
+                  onPress={onSubmit}
+                >
+                  <Text style={styles.registerButtonText}>Зареєстуватися</Text>
                 </TouchableOpacity>
               </View>
 
               <TouchableOpacity
-                style={styles.registrationButton}
+                style={styles.logInButtonContainer}
                 onPress={() => {
-                  navigation.navigate("RegistrationScreen");
+                  navigation.navigate("LoginScreen");
                 }}
               >
-                <Text style={styles.registrationButtonText}>
-                  Немає акаунту?
-                  <Text style={{ textDecorationLine: "underline" }}>
-                    Зареєструватися
-                  </Text>
-                </Text>
+                <Text style={styles.logInButtonText}>Вже є акаунт? Увійти</Text>
               </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
@@ -123,45 +147,67 @@ export const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    justifyContent: "flex-end",
   },
   backgroundImage: {
     flex: 1,
     resizeMode: "cover",
     justifyContent: "flex-end",
   },
-  authorizeContainer: {
-    paddingTop: 32,
+  registrationContainer: {
+    position: "relative",
+
+    paddingTop: 92,
     paddingHorizontal: 16,
+    paddingBottom: 78,
 
     backgroundColor: "#fff",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
   },
+  avatarContainer: {
+    position: "absolute",
+    top: -60,
+    left: "50%",
+    marginLeft: -50,
+  },
+  avatar: {
+    width: 120,
+    height: 120,
+    backgroundColor: "#F6F6F6",
+    borderRadius: 16,
+  },
+  addAvatarButton: {
+    position: "absolute",
+    right: -12,
+    bottom: 14,
+  },
   title: {
-    marginBottom: 33,
+    marginBottom: 32,
 
     fontFamily: "Roboto-Medium",
+    fontWeight: 500,
     fontSize: 30,
     lineHeight: 35,
     textAlign: "center",
+    letterSpacing: 0.01,
 
     color: "#212121",
   },
 
   input: {
-    height: 50,
     paddingLeft: 16,
 
-    color: "#212121",
+    height: 50,
+
     fontFamily: "Roboto-Regular",
     fontSize: 16,
     lineHeight: 19,
 
     borderWidth: 1,
-    borderColor: "#E8E8E8",
     borderRadius: 8,
     backgroundColor: "#F6F6F6",
+    borderColor: "#E8E8E8",
   },
   showPasswordButton: {
     position: "absolute",
@@ -175,24 +221,26 @@ const styles = StyleSheet.create({
 
     color: "#1B4371",
   },
-  logInButton: {
+  registerButtonContainer: {
+    display: "flex",
     justifyContent: "center",
-    alignItems: "center",
 
     height: 51,
-    marginBottom: 16,
+    paddingLeft: 32,
+    paddingRight: 32,
 
     backgroundColor: "#FF6C00",
     borderRadius: 100,
   },
-  logInButtonText: {
+  registerButtonText: {
+    textAlign: "center",
+    fontFamily: "Roboto-Regular",
     fontSize: 16,
     lineHeight: 19,
-    textAlign: "center",
-    color: "#FFFFFF",
+
+    color: "#fff",
   },
-  registrationButton: {},
-  registrationButtonText: {
+  logInButtonText: {
     fontFamily: "Roboto-Regular",
     fontSize: 16,
     lineHeight: 19,

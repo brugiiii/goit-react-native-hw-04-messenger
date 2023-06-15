@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image } from "react-native";
-import exampleImage from "../../assets/images/example.png";
+import exampleImage from "~/assets/images/example.png";
 
 export const PostsScreen = () => {
   return (

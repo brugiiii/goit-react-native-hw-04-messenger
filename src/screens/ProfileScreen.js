@@ -6,7 +6,7 @@ import {
   ImageBackground,
 } from "react-native";
 
-import backgroundPhoto from "../../assets/images/backgroundPhoto.jpeg";
+import backgroundPhoto from "~/assets/images/backgroundPhoto.jpeg";
 
 export const ProfileScreen = () => {
   return (
