@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet, Image } from "react-native";
-import exampleImage from "~/assets/images/example.png";
+import avatar from "~/assets/images/avatar60.png";
 
 export const PostsScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.posts}>
         <View style={styles.post}>
-          <Image source={exampleImage} style={styles.avatar} />
+          <Image source={avatar} style={styles.avatar} />
           <View>
             <Text style={styles.nickname}>Natali Romanova</Text>
             <Text style={styles.email}>email@example.com</Text>

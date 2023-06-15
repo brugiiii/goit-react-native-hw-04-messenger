@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
 const Tabs = createBottomTabNavigator();
@@ -22,10 +23,8 @@ export const Home = () => {
 
           alignItems: "center",
         },
-        tabBarActiveTintColor: "#fff",
+        tabBarActiveTintColor: "#FF6C00",
         tabBarInactiveTintColor: "rgba(33, 33, 33, 0.8)",
-        tabBarActiveBackgroundColor: "#FF6C00",
-        tabBarInactiveBackgroundColor: "#fff",
         tabBarItemStyle: {
           borderRadius: 20,
           height: 40,
@@ -49,7 +48,19 @@ export const Home = () => {
       <Tabs.Screen
         name="PostsScreen"
         component={PostsScreen}
-        options={{ ...headerStyles, title: "Публікації" }}
+        options={{
+          ...headerStyles,
+          title: "Публікації",
+          headerRight: () => (
+            <MaterialIcons
+              name="logout"
+              size={24}
+              color="#BDBDBD"
+              style={{ marginRight: 16 }}
+              onPress={() => navigation.navigate("LoginScreen")}
+            />
+          ),
+        }}
       />
       <Tabs.Screen
         name="CreatePostsScreen"
