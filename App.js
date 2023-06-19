@@ -1,10 +1,14 @@
 import "react-native-gesture-handler";
-import { RegistrationScreen, LoginScreen } from "~/screens/auth";
-import { Home } from "~/screens/Home";
-import { useFonts } from "expo-font";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+
+import { RegistrationScreen, LoginScreen } from "~/screens/auth";
+import { Home } from "~/screens/Home";
+import { MapScreen } from "~/screens/MapScreen";
+
+import { useFonts } from "expo-font";
+import { AntDesign } from "@expo/vector-icons";
 
 const MainStack = createStackNavigator();
 
@@ -21,7 +25,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <MainStack.Navigator initialRouteName="RegistrationScreen">
+      <MainStack.Navigator initialRouteName="Home">
         <MainStack.Screen
           name="RegistrationScreen"
           component={RegistrationScreen}
@@ -40,6 +44,22 @@ export default function App() {
           name="Home"
           component={Home}
           options={{ headerShown: false }}
+        />
+
+        <MainStack.Screen
+          name="MapScreen"
+          component={MapScreen}
+          options={{
+            headerLeft: () => (
+              <AntDesign
+                name="arrowleft"
+                size={24}
+                color="rgba(33, 33, 33, 0.8)"
+                style={{ marginLeft: 16 }}
+                onPress={() => {}}
+              />
+            ),
+          }}
         />
       </MainStack.Navigator>
     </NavigationContainer>

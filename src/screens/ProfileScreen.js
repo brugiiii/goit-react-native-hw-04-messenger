@@ -21,23 +21,22 @@ export const ProfileScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      <ImageBackground source={backgroundPhoto} style={styles.backgroundPhoto}>
-        <ScrollView style={styles.profile}>
-          <MaterialIcons
-            name="logout"
-            size={24}
-            color="#BDBDBD"
-            style={styles.logoutIcon}
-            onPress={() => navigation.navigate("LoginScreen")}
-          />
-          <View style={styles.avatarThumb}>
-            <Image source={avatar} />
-            <TouchableOpacity style={styles.deleteAvatarIcon}>
-              <AntDesign name="closecircleo" size={25} color="#BDBDBD" />
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.username}>Natali Romanova</Text>
+    <ImageBackground source={backgroundPhoto} style={styles.backgroundPhoto}>
+      <View style={styles.profile}>
+        <TouchableOpacity
+          style={styles.logoutIcon}
+          onPress={() => navigation.navigate("LoginScreen")}
+        >
+          <MaterialIcons name="logout" size={24} color="#BDBDBD" />
+        </TouchableOpacity>
+        <View style={styles.avatarThumb}>
+          <Image source={avatar} />
+          <TouchableOpacity style={styles.deleteAvatarIcon}>
+            <AntDesign name="closecircleo" size={25} color="#BDBDBD" />
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.username}>Natali Romanova</Text>
+        <ScrollView style={{ marginTop: 32 }}>
           <View style={styles.post}>
             <View style={styles.postImageThumb}>
               <Image source={nature} />
@@ -45,16 +44,16 @@ export const ProfileScreen = () => {
             <Text style={styles.postTitle}>Ліс</Text>
             <View style={styles.postInfo}>
               <View style={styles.stats}>
-                <View style={styles.stat}>
+                <TouchableOpacity style={styles.stat}>
                   <FontAwesome name="comment" size={24} color="#FF6C00" />
                   <Text style={styles.statText}>8</Text>
-                </View>
-                <View style={styles.stat}>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.stat}>
                   <AntDesign name="like2" size={24} color="#FF6C00" />
                   <Text style={styles.statText}>153</Text>
-                </View>
+                </TouchableOpacity>
               </View>
-              <View style={{ ...styles.stat, gap: 4 }}>
+              <TouchableOpacity style={{ ...styles.stat, gap: 4 }}>
                 <EvilIcons name="location" size={24} color="#BDBDBD" />
                 <Text
                   style={{
@@ -64,17 +63,74 @@ export const ProfileScreen = () => {
                 >
                   Ukraine
                 </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.post}>
+            <View style={styles.postImageThumb}>
+              <Image source={nature} />
+            </View>
+            <Text style={styles.postTitle}>Ліс</Text>
+            <View style={styles.postInfo}>
+              <View style={styles.stats}>
+                <TouchableOpacity style={styles.stat}>
+                  <FontAwesome name="comment" size={24} color="#FF6C00" />
+                  <Text style={styles.statText}>8</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.stat}>
+                  <AntDesign name="like2" size={24} color="#FF6C00" />
+                  <Text style={styles.statText}>153</Text>
+                </TouchableOpacity>
               </View>
+              <TouchableOpacity style={{ ...styles.stat, gap: 4 }}>
+                <EvilIcons name="location" size={24} color="#BDBDBD" />
+                <Text
+                  style={{
+                    ...styles.statText,
+                    textDecorationLine: "underline",
+                  }}
+                >
+                  Ukraine
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.post}>
+            <View style={styles.postImageThumb}>
+              <Image source={nature} />
+            </View>
+            <Text style={styles.postTitle}>Ліс</Text>
+            <View style={styles.postInfo}>
+              <View style={styles.stats}>
+                <TouchableOpacity style={styles.stat}>
+                  <FontAwesome name="comment" size={24} color="#FF6C00" />
+                  <Text style={styles.statText}>8</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.stat}>
+                  <AntDesign name="like2" size={24} color="#FF6C00" />
+                  <Text style={styles.statText}>153</Text>
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity style={{ ...styles.stat, gap: 4 }}>
+                <EvilIcons name="location" size={24} color="#BDBDBD" />
+                <Text
+                  style={{
+                    ...styles.statText,
+                    textDecorationLine: "underline",
+                  }}
+                >
+                  Ukraine
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </ScrollView>
-      </ImageBackground>
-    </View>
+      </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
   backgroundPhoto: {
     flex: 1,
     resizeMode: "cover",
@@ -82,20 +138,24 @@ const styles = StyleSheet.create({
 
     paddingTop: 147,
   },
+  container: {
+    flex: 1,
+    position: "relative",
+    backgroundColor: "#FFF",
+  },
   profile: {
     position: "relative",
 
-    backgroundColor: "#fff",
+    flex: 1,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
+    backgroundColor: "#FFF",
 
     paddingTop: 92,
-    paddingBottom: 43,
+    paddingBottom: 11,
     paddingHorizontal: 16,
   },
   username: {
-    marginBottom: 33,
-
     textAlign: "center",
     fontFamily: "Roboto-Medium",
     fontSize: 30,
@@ -105,14 +165,14 @@ const styles = StyleSheet.create({
   },
   logoutIcon: {
     position: "absolute",
-    top: -70,
-    right: 0,
+    top: 22,
+    right: 16,
   },
   avatarThumb: {
     position: "absolute",
-    top: -152,
+    top: -60,
     left: "50%",
-    marginLeft: -60,
+    marginLeft: -50,
 
     width: 120,
     height: 120,

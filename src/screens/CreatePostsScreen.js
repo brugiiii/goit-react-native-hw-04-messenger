@@ -7,11 +7,15 @@ import {
   Image,
   Platform,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import { Feather } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 import defaultPhoto from "~/assets/images/defaultPhoto.png";
 
 export const CreatePostsScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={{ marginBottom: 32 }}>
@@ -20,6 +24,7 @@ export const CreatePostsScreen = () => {
         </View>
         <Text style={styles.photoText}>Завантажте фото</Text>
       </TouchableOpacity>
+
       <View style={styles.form}>
         <View style={{ marginBottom: 16 }}>
           <TextInput
@@ -34,6 +39,9 @@ export const CreatePostsScreen = () => {
             size={24}
             color="#bdbdbd"
             style={styles.locationIcon}
+            onPress={() => {
+              navigation.navigate("MapScreen");
+            }}
           />
           <TextInput
             style={{ ...styles.input, paddingLeft: 28 }}
@@ -45,6 +53,7 @@ export const CreatePostsScreen = () => {
           <Text style={styles.postButtonText}>Опубліковати</Text>
         </TouchableOpacity>
       </View>
+
       <TouchableOpacity style={styles.deleteButton}>
         <Feather name="trash-2" size={24} color="#bdbdbd" />
       </TouchableOpacity>
@@ -89,6 +98,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "50%",
     left: 0,
+    zIndex: 999,
 
     marginTop: -10,
   },

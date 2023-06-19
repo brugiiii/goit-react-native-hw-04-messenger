@@ -11,10 +11,12 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { sendEmailValidationRequest } from "~/services/api";
+
+import { AntDesign } from "@expo/vector-icons";
 import backgroundImage from "~/assets/images/backgroundPhoto.jpeg";
 
 export const RegistrationScreen = () => {
@@ -23,16 +25,16 @@ export const RegistrationScreen = () => {
   const [password, setPassword] = useState("");
 
   const [showPassword, setShowPassword] = useState(true);
-  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
 
   const navigation = useNavigation();
 
   const handleFocus = (e) => {
-    setIsKeyboardVisible(true);
+    setIsInputFocused(true);
   };
 
   const handleBlur = (e) => {
-    setIsKeyboardVisible(false);
+    setIsInputFocused(false);
   };
 
   const onSubmit = async () => {
@@ -61,7 +63,7 @@ export const RegistrationScreen = () => {
             <View
               style={{
                 ...styles.registrationContainer,
-                paddingBottom: isKeyboardVisible ? 32 : 78,
+                paddingBottom: isInputFocused ? 32 : 78,
               }}
             >
               <View style={styles.avatarContainer}>
@@ -78,6 +80,8 @@ export const RegistrationScreen = () => {
                     style={{
                       ...styles.input,
                       marginBottom: 16,
+                      borderColor: isInputFocused ? "#FF6C00" : "#E8E8E8",
+                      backgroundColor: isInputFocused ? "#FFFFFF" : "#F6F6F6",
                     }}
                     autoCapitalize="none"
                     onFocus={handleFocus}
@@ -92,6 +96,8 @@ export const RegistrationScreen = () => {
                     style={{
                       ...styles.input,
                       marginBottom: 16,
+                      borderColor: isInputFocused ? "#FF6C00" : "#E8E8E8",
+                      backgroundColor: isInputFocused ? "#FFFFFF" : "#F6F6F6",
                     }}
                     keyboardType="email-address"
                     autoCapitalize="none"
@@ -104,7 +110,11 @@ export const RegistrationScreen = () => {
                 <View style={{ marginBottom: 43, position: "relative" }}>
                   <TextInput
                     placeholder="Пароль"
-                    style={styles.input}
+                    style={{
+                      ...styles.input,
+                      borderColor: isInputFocused ? "#FF6C00" : "#E8E8E8",
+                      backgroundColor: isInputFocused ? "#FFFFFF" : "#F6F6F6",
+                    }}
                     secureTextEntry={showPassword}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
@@ -159,7 +169,6 @@ const styles = StyleSheet.create({
 
     paddingTop: 92,
     paddingHorizontal: 16,
-    paddingBottom: 78,
 
     backgroundColor: "#fff",
     borderTopLeftRadius: 25,
@@ -169,14 +178,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -60,
     left: "50%",
-    marginLeft: -50,
-  },
-  avatar: {
+    transform: [{ translateX: -50 }],
+
     width: 120,
     height: 120,
     backgroundColor: "#F6F6F6",
     borderRadius: 16,
   },
+  avatar: {},
   addAvatarButton: {
     position: "absolute",
     right: -12,
@@ -207,7 +216,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     backgroundColor: "#F6F6F6",
-    borderColor: "#E8E8E8",
   },
   showPasswordButton: {
     position: "absolute",

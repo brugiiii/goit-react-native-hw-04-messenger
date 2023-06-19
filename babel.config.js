@@ -17,6 +17,7 @@ module.exports = function (api) {
             "~/services": "./src/services",
             "~/hooks": "./src/hooks",
             "~/shared": "./src/shared",
+            "~/components": "./src/components",
           },
         },
       ],

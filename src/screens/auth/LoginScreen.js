@@ -58,7 +58,7 @@ export const LoginScreen = () => {
                 paddingBottom: isKeyboardVisible ? 32 : 144,
               }}
             >
-              <Text style={styles.title}> Увійти</Text>
+              <Text style={styles.title}>Увійти</Text>
 
               <View>
                 <View style={{ marginBottom: 16 }}>
