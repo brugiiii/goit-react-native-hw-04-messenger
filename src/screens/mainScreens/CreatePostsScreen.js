@@ -96,7 +96,7 @@ export const CreatePostsScreen = ({ navigation }) => {
   };
 
   const publish = () => {
-    navigation.navigate("PostsScreen", { name, location, picture, coords });
+    navigation.navigate("DefaultScreen", { name, location, picture, coords });
     resetData();
   };
 

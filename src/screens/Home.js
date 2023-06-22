@@ -2,7 +2,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { PostsScreen, CreatePostsScreen, ProfileScreen } from "./index";
 
 import {
-  LogoutIcon,
   PlusIcon,
   ArrowLeftIcon,
   GridIcon,
@@ -48,17 +47,7 @@ export const Home = ({ navigation }) => {
       <Tabs.Screen
         name="PostsScreen"
         component={PostsScreen}
-        options={{
-          ...headerStyles,
-          title: "Публікації",
-          headerRight: () => (
-            <LogoutIcon
-              color="#BDBDBD"
-              style={{ marginRight: 16 }}
-              onPress={() => navigation.navigate("LoginScreen")}
-            />
-          ),
-        }}
+        options={{ headerShown: false }}
       />
       <Tabs.Screen
         onPress={() => {
@@ -91,6 +80,15 @@ export const Home = ({ navigation }) => {
   );
 };
 
+const createPostsTabStyles = {
+  maxWidth: 70,
+  height: 40,
+  marginHorizontal: 31,
+
+  borderRadius: 20,
+  backgroundColor: "#FF6C00",
+};
+
 const headerStyles = {
   headerStyle: {
     borderBottomColor: "rgba(0, 0, 0, 0.3)",
@@ -104,13 +102,4 @@ const headerStyles = {
 
     color: "#212121",
   },
-};
-
-const createPostsTabStyles = {
-  maxWidth: 70,
-  height: 40,
-  marginHorizontal: 31,
-
-  borderRadius: 20,
-  backgroundColor: "#FF6C00",
 };

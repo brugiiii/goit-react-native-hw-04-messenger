@@ -3,16 +3,10 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import {
-  MapScreen,
-  CommentsScreen,
-  RegistrationScreen,
-  LoginScreen,
-} from "~/screens";
+import { RegistrationScreen, LoginScreen } from "~/screens";
 import { Home } from "~/screens/Home";
 
 import { useFonts } from "expo-font";
-import { ArrowLeftIcon } from "~/components/icons";
 
 const MainStack = createStackNavigator();
 
@@ -48,38 +42,6 @@ export default function App() {
           name="Home"
           component={Home}
           options={{ headerShown: false }}
-        />
-
-        <MainStack.Screen
-          name="MapScreen"
-          component={MapScreen}
-          options={({ navigation }) => ({
-            headerLeft: () => (
-              <ArrowLeftIcon
-                color="rgba(33, 33, 33, 0.8)"
-                style={{ marginLeft: 16 }}
-                onPress={() => {
-                  navigation.goBack();
-                }}
-              />
-            ),
-          })}
-        />
-
-        <MainStack.Screen
-          name="CommentsScreen"
-          component={CommentsScreen}
-          options={({ navigation }) => ({
-            headerTitle: "Коментарі",
-
-            headerLeft: () => (
-              <ArrowLeftIcon
-                color="rgba(33, 33, 33, 0.8)"
-                style={{ marginLeft: 16 }}
-                onPress={() => navigation.goBack()}
-              />
-            ),
-          })}
         />
       </MainStack.Navigator>
     </NavigationContainer>

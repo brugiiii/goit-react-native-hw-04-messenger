@@ -5,7 +5,7 @@ import avatar from "~/assets/images/avatar60.png";
 
 import { Post } from "~/components/Post";
 
-export const PostsScreen = ({ route }) => {
+export const DefaultScreen = ({ route }) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {

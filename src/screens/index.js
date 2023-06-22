@@ -1,9 +1,10 @@
 export { RegistrationScreen } from "./auth/RegistrationScreen";
 export { LoginScreen } from "./auth/LoginScreen";
 
-export { PostsScreen } from "./mainScreen/PostsScreen";
-export { CreatePostsScreen } from "./mainScreen/CreatePostsScreen";
-export { ProfileScreen } from "./mainScreen/ProfileScreen";
+export { PostsScreen } from "./mainScreens/PostsScreen";
+export { CreatePostsScreen } from "./mainScreens/CreatePostsScreen";
+export { ProfileScreen } from "./mainScreens/ProfileScreen";
 
-export { CommentsScreen } from "./nestedScreen/CommentsScreen";
-export { MapScreen } from "./nestedScreen/MapScreen";
+export { CommentsScreen } from "./nestedScreens/CommentsScreen";
+export { MapScreen } from "./nestedScreens/MapScreen";
+export { DefaultScreen } from "./nestedScreens/DefaultScreen";
