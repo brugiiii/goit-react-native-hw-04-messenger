@@ -1,15 +1,17 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Platform } from "react-native";
-
 import { PostsScreen, CreatePostsScreen, ProfileScreen } from "./index";
 
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
+import {
+  LogoutIcon,
+  PlusIcon,
+  ArrowLeftIcon,
+  GridIcon,
+  PersonIcon,
+} from "~/components/icons";
 
 const Tabs = createBottomTabNavigator();
 
-export const Home = ({ navigation, route }) => {
+export const Home = ({ navigation }) => {
   return (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
@@ -19,7 +21,7 @@ export const Home = ({ navigation, route }) => {
           borderTopColor: "rgba(0, 0, 0, 0.3)",
           borderTopWidth: 1,
           paddingTop: 9,
-          paddingBottom: Platform.OS === "android" ? 54 : 34,
+          paddingBottom: 54,
 
           alignItems: "center",
         },
@@ -32,13 +34,13 @@ export const Home = ({ navigation, route }) => {
         },
         tabBarIcon: ({ color }) => {
           if (route.name === "PostsScreen") {
-            return <Ionicons name="grid-outline" size={24} color={color} />;
+            return <GridIcon name="grid-outline" size={24} color={color} />;
           }
           if (route.name === "CreatePostsScreen") {
-            return <AntDesign name="plus" size={24} color={"#fff"} />;
+            return <PlusIcon color="#FFF" />;
           }
           if (route.name === "ProfileScreen") {
-            return <Ionicons name="person-outline" size={24} color={color} />;
+            return <PersonIcon name="person-outline" size={24} color={color} />;
           }
         },
       })}
@@ -50,9 +52,7 @@ export const Home = ({ navigation, route }) => {
           ...headerStyles,
           title: "Публікації",
           headerRight: () => (
-            <MaterialIcons
-              name="logout"
-              size={24}
+            <LogoutIcon
               color="#BDBDBD"
               style={{ marginRight: 16 }}
               onPress={() => navigation.navigate("LoginScreen")}
@@ -71,9 +71,7 @@ export const Home = ({ navigation, route }) => {
           ...headerStyles,
           title: "Створити публікацію",
           headerLeft: () => (
-            <AntDesign
-              name="arrowleft"
-              size={24}
+            <ArrowLeftIcon
               color="rgba(33, 33, 33, 0.8)"
               style={{ marginLeft: 16 }}
               onPress={() => navigation.navigate("PostsScreen")}
