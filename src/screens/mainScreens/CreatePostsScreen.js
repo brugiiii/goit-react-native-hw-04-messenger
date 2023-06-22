@@ -142,7 +142,7 @@ export const CreatePostsScreen = ({ navigation }) => {
           )}
           <TouchableOpacity
             onPress={takePicture}
-            disabled={picture ? true : false}
+            disabled={!isCameraReady || picture ? true : false}
             style={{
               ...styles.takePictureIconThumb,
               backgroundColor: picture ? "#FFFFFF30" : "#FFF",
