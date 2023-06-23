@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   View,
   ImageBackground,
@@ -10,9 +11,9 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { sendEmailValidationRequest } from "~/services/api";
+// import { sendEmailValidationRequest } from "~/services/api";
+
 import backgroundImage from "~/assets/images/backgroundPhoto.jpeg";
 
 export const LoginScreen = () => {
@@ -31,15 +32,19 @@ export const LoginScreen = () => {
   };
 
   const onSubmit = async () => {
-    const isValid = await sendEmailValidationRequest(email);
+    // const isValid = await sendEmailValidationRequest(email);
 
-    if (isValid) {
-      setEmail("");
-      setPassword("");
-      navigation.navigate("Home");
-    } else {
-      console.log("EMAIL WAS INVALID.");
-    }
+    // if (isValid) {
+    //   setEmail("");
+    //   setPassword("");
+    //   navigation.navigate("Home");
+    // } else {
+    //   console.log("EMAIL WAS INVALID.");
+    // }
+
+    setEmail("");
+    setPassword("");
+    navigation.navigate("Home");
   };
 
   return (

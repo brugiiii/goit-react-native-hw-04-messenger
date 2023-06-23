@@ -14,7 +14,7 @@ import {
 
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { sendEmailValidationRequest } from "~/services/api";
+// import { sendEmailValidationRequest } from "~/services/api";
 
 import { AntDesign } from "@expo/vector-icons";
 import backgroundImage from "~/assets/images/backgroundPhoto.jpeg";
@@ -38,16 +38,21 @@ export const RegistrationScreen = () => {
   };
 
   const onSubmit = async () => {
-    const isValid = await sendEmailValidationRequest(email);
+    // const isValid = await sendEmailValidationRequest(email);
 
-    if (isValid) {
-      setLogin("");
-      setEmail("");
-      setPassword("");
-      navigation.navigate("Home");
-    } else {
-      console.log("EMAIL WAS INVALID.");
-    }
+    // if (isValid) {
+    //   setLogin("");
+    //   setEmail("");
+    //   setPassword("");
+    //   navigation.navigate("Home");
+    // } else {
+    //   console.log("EMAIL WAS INVALID.");
+    // }
+
+    setLogin("");
+    setEmail("");
+    setPassword("");
+    navigation.navigate("Home");
   };
 
   return (

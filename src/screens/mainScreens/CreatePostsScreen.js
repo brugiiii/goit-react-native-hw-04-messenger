@@ -69,6 +69,12 @@ export const CreatePostsScreen = ({ navigation }) => {
       coords: { latitude, longitude },
     } = await Location.getCurrentPositionAsync();
 
+    const [place] = await Location.reverseGeocodeAsync({
+      latitude,
+      longitude,
+    });
+
+    setLocation(`${place.region} Region, ${place.country}`);
     setCoords({ latitude, longitude });
   };
 
@@ -142,7 +148,8 @@ export const CreatePostsScreen = ({ navigation }) => {
           )}
           <TouchableOpacity
             onPress={takePicture}
-            disabled={!isCameraReady || picture ? true : false}
+            disabled={picture ? true : false}
+            // !isCameraReady ||
             style={{
               ...styles.takePictureIconThumb,
               backgroundColor: picture ? "#FFFFFF30" : "#FFF",

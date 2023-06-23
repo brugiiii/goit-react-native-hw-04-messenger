@@ -1,5 +1,3 @@
-import {} from "react-native";
-
 import { CommentsScreen, MapScreen, DefaultScreen } from "~/screens";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -7,7 +5,7 @@ import { ArrowLeftIcon, LogoutIcon } from "~/components/icons";
 
 const NestedStack = createStackNavigator();
 
-export const PostsScreen = () => {
+export const PostsScreen = ({ navigation }) => {
   return (
     <NestedStack.Navigator initialRouteName="DefaultScreen">
       <NestedStack.Screen
