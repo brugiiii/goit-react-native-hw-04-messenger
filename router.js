@@ -1,11 +1,9 @@
-import { useState } from "react";
-
-import { RegistrationScreen, LoginScreen } from "~/screens";
+import { RegistrationScreen, LoginScreen } from "~/screens/auth";
 import {
   PostsScreen,
   CreatePostsScreen,
   ProfileScreen,
-} from "~/screens/index.js";
+} from "~/screens/mainScreens";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -20,13 +18,7 @@ import {
 const Tabs = createBottomTabNavigator();
 const MainStack = createStackNavigator();
 
-export const Routes = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  const switchLoggedIn = () => {
-    setIsLoggedIn((prev) => !prev.isLoggedIn);
-  };
-
+export const useRoute = (isLoggedIn) => {
   return isLoggedIn ? (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
@@ -98,7 +90,6 @@ export const Routes = () => {
         options={{
           headerShown: false,
         }}
-        params={switchLoggedIn}
       />
       <MainStack.Screen
         name="LoginScreen"
@@ -135,4 +126,4 @@ const headerStyles = {
   },
 };
 
-export default Routes;
+export default useRoute;

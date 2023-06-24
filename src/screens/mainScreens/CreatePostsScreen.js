@@ -52,7 +52,9 @@ export const CreatePostsScreen = ({ navigation }) => {
       Alert.alert("", "Save this photo?", [
         {
           text: "NO",
-          onPress: () => {},
+          onPress: () => {
+            console.log(1);
+          },
           style: "cancel",
         },
         {
@@ -114,7 +116,6 @@ export const CreatePostsScreen = ({ navigation }) => {
       : Alert.alert("", "Are you sure, you want to delete?", [
           {
             text: "Cancel",
-            onPress: () => console.log("Cancel Pressed"),
             style: "cancel",
           },
           {

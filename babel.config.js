@@ -19,6 +19,7 @@ module.exports = function (api) {
             "~/hooks": "./src/hooks",
             "~/shared": "./src/shared",
             "~/components": "./src/components",
+            "~/redux": "./src/redux",
           },
         },
       ],

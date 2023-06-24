@@ -4,17 +4,25 @@ import {
   Text,
   StyleSheet,
   ImageBackground,
-  TextInput,
   TouchableOpacity,
   Platform,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+import { MyAppTextInput } from "~/components/MyAppTextInput";
 
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 // import { sendEmailValidationRequest } from "~/services/api";
+
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "~/src/firebase/config";
 
 import { AntDesign } from "@expo/vector-icons";
 import backgroundImage from "~/assets/images/backgroundPhoto.jpeg";
@@ -80,13 +88,11 @@ export const RegistrationScreen = () => {
               <Text style={styles.title}>Реєстрація</Text>
               <View style={{ marginBottom: 16 }}>
                 <View>
-                  <TextInput
+                  <MyAppTextInput
                     placeholder="Логін"
                     style={{
                       ...styles.input,
                       marginBottom: 16,
-                      borderColor: isInputFocused ? "#FF6C00" : "#E8E8E8",
-                      backgroundColor: isInputFocused ? "#FFFFFF" : "#F6F6F6",
                     }}
                     autoCapitalize="none"
                     onFocus={handleFocus}
@@ -96,13 +102,11 @@ export const RegistrationScreen = () => {
                   />
                 </View>
                 <View>
-                  <TextInput
+                  <MyAppTextInput
                     placeholder="Адреса електронної пошти"
                     style={{
                       ...styles.input,
                       marginBottom: 16,
-                      borderColor: isInputFocused ? "#FF6C00" : "#E8E8E8",
-                      backgroundColor: isInputFocused ? "#FFFFFF" : "#F6F6F6",
                     }}
                     keyboardType="email-address"
                     autoCapitalize="none"
@@ -113,13 +117,9 @@ export const RegistrationScreen = () => {
                   />
                 </View>
                 <View style={{ marginBottom: 43, position: "relative" }}>
-                  <TextInput
+                  <MyAppTextInput
                     placeholder="Пароль"
-                    style={{
-                      ...styles.input,
-                      borderColor: isInputFocused ? "#FF6C00" : "#E8E8E8",
-                      backgroundColor: isInputFocused ? "#FFFFFF" : "#F6F6F6",
-                    }}
+                    style={styles.input}
                     secureTextEntry={showPassword}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
@@ -221,6 +221,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     backgroundColor: "#F6F6F6",
+    borderColor: "#E8E8E8",
   },
   showPasswordButton: {
     position: "absolute",

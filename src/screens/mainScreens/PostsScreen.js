@@ -1,4 +1,8 @@
-import { CommentsScreen, MapScreen, DefaultScreen } from "~/screens";
+import {
+  CommentsScreen,
+  MapScreen,
+  DefaultScreen,
+} from "~/screens/nestedScreens";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import { ArrowLeftIcon, LogoutIcon } from "~/components/icons";
