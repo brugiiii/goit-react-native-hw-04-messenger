@@ -14,15 +14,6 @@ import { MyAppTextInput } from "~/components/MyAppTextInput";
 
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-// import { sendEmailValidationRequest } from "~/services/api";
-
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  updateProfile,
-} from "firebase/auth";
-import { auth } from "~/src/firebase/config";
 
 import { AntDesign } from "@expo/vector-icons";
 import backgroundImage from "~/assets/images/backgroundPhoto.jpeg";
@@ -46,17 +37,6 @@ export const RegistrationScreen = () => {
   };
 
   const onSubmit = async () => {
-    // const isValid = await sendEmailValidationRequest(email);
-
-    // if (isValid) {
-    //   setLogin("");
-    //   setEmail("");
-    //   setPassword("");
-    //   navigation.navigate("Home");
-    // } else {
-    //   console.log("EMAIL WAS INVALID.");
-    // }
-
     setLogin("");
     setEmail("");
     setPassword("");

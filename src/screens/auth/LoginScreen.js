@@ -13,16 +13,6 @@ import {
 import { MyAppTextInput } from "~/components/MyAppTextInput";
 import { useNavigation } from "@react-navigation/native";
 
-// import { sendEmailValidationRequest } from "~/services/api";
-
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  updateProfile,
-} from "firebase/auth";
-import { auth } from "~/src/firebase/config";
-
 import backgroundImage from "~/assets/images/backgroundPhoto.jpeg";
 
 export const LoginScreen = () => {
@@ -41,16 +31,6 @@ export const LoginScreen = () => {
   };
 
   const onSubmit = async () => {
-    // const isValid = await sendEmailValidationRequest(email);
-
-    // if (isValid) {
-    //   setEmail("");
-    //   setPassword("");
-    //   navigation.navigate("Home");
-    // } else {
-    //   console.log("EMAIL WAS INVALID.");
-    // }
-
     setEmail("");
     setPassword("");
     navigation.navigate("Home");

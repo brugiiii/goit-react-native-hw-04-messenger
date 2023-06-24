@@ -20,6 +20,7 @@ module.exports = function (api) {
             "~/shared": "./src/shared",
             "~/components": "./src/components",
             "~/redux": "./src/redux",
+            "~/firebase": "./src/firebase",
           },
         },
       ],
