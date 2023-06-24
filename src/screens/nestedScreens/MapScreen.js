@@ -12,7 +12,7 @@ export const MapScreen = ({ route: { params: coords } }) => {
           longitudeDelta: 0.0421,
         }}
       >
-        <Marker title="You are here =)" coordinate={{ ...coords }} />
+        <Marker title="You were here =)" coordinate={{ ...coords }} />
       </MapView>
     </View>
   );

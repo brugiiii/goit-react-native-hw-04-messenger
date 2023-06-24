@@ -1,5 +1,14 @@
+import { useState } from "react";
+
+import { RegistrationScreen, LoginScreen } from "~/screens";
+import {
+  PostsScreen,
+  CreatePostsScreen,
+  ProfileScreen,
+} from "~/screens/index.js";
+
+import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { PostsScreen, CreatePostsScreen, ProfileScreen } from "./index";
 
 import {
   PlusIcon,
@@ -9,9 +18,16 @@ import {
 } from "~/components/icons";
 
 const Tabs = createBottomTabNavigator();
+const MainStack = createStackNavigator();
 
-export const Home = ({ navigation }) => {
-  return (
+export const Routes = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const switchLoggedIn = () => {
+    setIsLoggedIn((prev) => !prev.isLoggedIn);
+  };
+
+  return isLoggedIn ? (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
         tabBarHideOnKeyboard: true,
@@ -50,12 +66,9 @@ export const Home = ({ navigation }) => {
         options={{ headerShown: false }}
       />
       <Tabs.Screen
-        onPress={() => {
-          console.log(1);
-        }}
         name="CreatePostsScreen"
         component={CreatePostsScreen}
-        options={{
+        options={({ navigation }) => ({
           tabBarStyle: { display: "none" },
           ...headerStyles,
           title: "Створити публікацію",
@@ -69,7 +82,7 @@ export const Home = ({ navigation }) => {
           tabBarItemStyle: {
             ...createPostsTabStyles,
           },
-        }}
+        })}
       />
       <Tabs.Screen
         name="ProfileScreen"
@@ -77,6 +90,24 @@ export const Home = ({ navigation }) => {
         options={{ headerShown: false }}
       />
     </Tabs.Navigator>
+  ) : (
+    <MainStack.Navigator initialRouteName="RegistrationScreen">
+      <MainStack.Screen
+        name="RegistrationScreen"
+        component={RegistrationScreen}
+        options={{
+          headerShown: false,
+        }}
+        params={switchLoggedIn}
+      />
+      <MainStack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </MainStack.Navigator>
   );
 };
 
@@ -103,3 +134,5 @@ const headerStyles = {
     color: "#212121",
   },
 };
+
+export default Routes;

@@ -271,7 +271,6 @@ const styles = StyleSheet.create({
     color: "#BDBDBD",
   },
   form: {
-    // flex: 1,
     marginBottom: 120,
   },
   locationIcon: {

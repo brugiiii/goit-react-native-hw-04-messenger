@@ -29,11 +29,11 @@ export const RegistrationScreen = () => {
 
   const navigation = useNavigation();
 
-  const handleFocus = (e) => {
+  const handleFocus = () => {
     setIsInputFocused(true);
   };
 
-  const handleBlur = (e) => {
+  const handleBlur = () => {
     setIsInputFocused(false);
   };
 

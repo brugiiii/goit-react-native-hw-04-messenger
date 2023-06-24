@@ -14,6 +14,7 @@ export const PostsScreen = ({ navigation }) => {
         options={{
           ...headerStyles,
           title: "Публікації",
+          headerLeft: null,
           headerRight: () => (
             <LogoutIcon
               color="#BDBDBD"
