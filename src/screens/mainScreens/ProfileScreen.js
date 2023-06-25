@@ -12,17 +12,23 @@ import {
 import backgroundPhoto from "~/assets/images/backgroundPhoto.jpeg";
 import avatar from "~/assets/images/avatar120.png";
 
+import { useDispatch, useSelector } from "react-redux";
+import { signout } from "~/redux/auth/authOperations";
+import { selectNickname } from "~/redux/auth/authSelectors";
+
 import { LogoutIcon, CloseCircleIcon } from "~/components/icons";
 
-export const ProfileScreen = ({ navigation }) => {
+export const ProfileScreen = () => {
   const [posts, setPosts] = useState([]);
+  const nickname = useSelector(selectNickname);
+  const dispatch = useDispatch();
 
   return (
     <ImageBackground source={backgroundPhoto} style={styles.backgroundPhoto}>
       <View style={styles.profile}>
         <TouchableOpacity
           style={styles.logoutIcon}
-          onPress={() => navigation.navigate("LoginScreen")}
+          onPress={() => dispatch(signout())}
         >
           <LogoutIcon color="#BDBDBD" />
         </TouchableOpacity>
@@ -32,7 +38,7 @@ export const ProfileScreen = ({ navigation }) => {
             <CloseCircleIcon color="#BDBDBD" />
           </TouchableOpacity>
         </View>
-        <Text style={styles.username}>Natali Romanova</Text>
+        <Text style={styles.username}>{nickname}</Text>
         <FlatList
           style={{ marginTop: 32 }}
           data={posts}

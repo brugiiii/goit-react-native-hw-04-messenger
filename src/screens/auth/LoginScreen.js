@@ -15,12 +15,17 @@ import { useNavigation } from "@react-navigation/native";
 
 import backgroundImage from "~/assets/images/backgroundPhoto.jpeg";
 
+import { useDispatch } from "react-redux";
+import { logIn } from "~/redux/auth/authOperations";
+
 export const LoginScreen = () => {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(true);
+
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const handleFocus = () => {
     setIsKeyboardVisible(true);
@@ -33,7 +38,8 @@ export const LoginScreen = () => {
   const onSubmit = async () => {
     setEmail("");
     setPassword("");
-    navigation.navigate("Home");
+
+    dispatch(logIn({ email, password }));
   };
 
   return (

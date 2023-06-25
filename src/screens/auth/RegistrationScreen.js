@@ -18,6 +18,9 @@ import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
 import backgroundImage from "~/assets/images/backgroundPhoto.jpeg";
 
+import { signUp } from "~/redux/auth/authOperations";
+import { useDispatch } from "react-redux";
+
 export const RegistrationScreen = () => {
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
@@ -27,6 +30,7 @@ export const RegistrationScreen = () => {
   const [isInputFocused, setIsInputFocused] = useState(false);
 
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const handleFocus = () => {
     setIsInputFocused(true);
@@ -37,10 +41,11 @@ export const RegistrationScreen = () => {
   };
 
   const onSubmit = async () => {
+    dispatch(signUp({ email, password, login }));
+
     setLogin("");
     setEmail("");
     setPassword("");
-    navigation.navigate("Home");
   };
 
   return (

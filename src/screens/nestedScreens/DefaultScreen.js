@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 
 import { View, Text, StyleSheet, Image, FlatList } from "react-native";
+import { useSelector } from "react-redux";
+import { selectEmail, selectNickname } from "~/redux/auth/authSelectors";
+
 import avatar from "~/assets/images/avatar60.png";
 
 import { Post } from "~/components/Post";
 
 export const DefaultScreen = ({ route }) => {
   const [posts, setPosts] = useState([]);
+  const nickname = useSelector(selectNickname);
+  const email = useSelector(selectEmail);
 
   useEffect(() => {
     if (route.params) {
@@ -19,8 +24,8 @@ export const DefaultScreen = ({ route }) => {
       <View style={styles.user}>
         <Image source={avatar} style={styles.avatar} />
         <View>
-          <Text style={styles.nickname}>Natali Romanova</Text>
-          <Text style={styles.email}>email@example.com</Text>
+          <Text style={styles.nickname}>{nickname}</Text>
+          <Text style={styles.email}>{email}</Text>
         </View>
       </View>
       <FlatList

@@ -5,11 +5,16 @@ import {
 } from "~/screens/nestedScreens";
 import { createStackNavigator } from "@react-navigation/stack";
 
+import { useDispatch } from "react-redux";
+import { signout } from "~/redux/auth/authOperations";
+
 import { ArrowLeftIcon, LogoutIcon } from "~/components/icons";
 
 const NestedStack = createStackNavigator();
 
-export const PostsScreen = ({ navigation }) => {
+export const PostsScreen = () => {
+  const dispatch = useDispatch();
+
   return (
     <NestedStack.Navigator initialRouteName="DefaultScreen">
       <NestedStack.Screen
@@ -23,7 +28,9 @@ export const PostsScreen = ({ navigation }) => {
             <LogoutIcon
               color="#BDBDBD"
               style={{ marginRight: 16 }}
-              onPress={() => navigation.navigate("LoginScreen")}
+              onPress={() => {
+                dispatch(signout());
+              }}
             />
           ),
         }}
